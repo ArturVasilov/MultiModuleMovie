@@ -1,0 +1,34 @@
+apply from: "${rootProject.projectDir}/common.gradle"
+apply plugin: 'kotlin-kapt'
+
+def youtubeEnabled = project.property('youtube.inapp.enabled').toBoolean()
+
+android {
+    defaultConfig {
+        buildConfigField "String", "YOUTUBE_API_KEY", "\"${project.property('youtube.apiKey')}\""
+    }
+
+    sourceSets {
+        main {
+            if (youtubeEnabled) {
+                java.srcDirs += 'src/impl/kotlin'
+                res.srcDirs += 'src/impl/res'
+                manifest.srcFile 'src/impl/AndroidManifest.xml'
+            } else {
+                java.srcDirs += 'src/stub/kotlin'
+                manifest.srcFile 'src/stub/AndroidManifest.xml'
+            }
+        }
+    }
+}
+
+dependencies {
+    if (youtubeEnabled) {
+        implementation files("libs/youtube.jar")
+        implementation "com.android.support:appcompat-v7:${project.property('support.version')}"
+    }
+    implementation project(':core')
+
+    implementation "com.google.dagger:dagger:${project.property('dagger.version')}"
+    kapt "com.google.dagger:dagger-compiler:${project.property('dagger.version')}"
+}

@@ -1,0 +1,7 @@
+<resources>
+    <string name="movie_details">Movie details</string>
+    <string name="rating">Rating \u2014 %1$s/%2$s</string>
+    <string name="movie_title">%1$s \u2014 %2$s</string>
+    <string name="movie_videos_title">Videos:</string>
+    <string name="error_loading_videos">Failed to load videos for movie</string>
+</resources>

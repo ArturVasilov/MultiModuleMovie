@@ -1,0 +1,5 @@
+apply from: "${rootProject.projectDir}/common.gradle"
+
+dependencies {
+    implementation "com.google.dagger:dagger:${project.property('dagger.version')}"
+}

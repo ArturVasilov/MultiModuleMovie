@@ -1,0 +1,63 @@
+ext {
+    minSdkVersion = 21
+    compileSdkVersion = 27
+    targetSdkVersion = 27
+
+    versionName = "1.0"
+    versionCode = 1
+}
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${project.property('kotlin.version')}"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+subprojects {
+    configurations.all {
+        exclude group: 'com.intellij', module: 'annotations'
+
+        resolutionStrategy {
+            failOnVersionConflict()
+
+            force "com.squareup.okhttp3:okhttp:${project.property('okhttp.version')}"
+            force "com.google.code.gson:gson:${project.property('gson.version')}"
+            force "io.reactivex.rxjava2:rxjava:${project.property('rxjava.version')}"
+
+            // AAC -> support library
+            force "com.android.support:support-annotations:${project.property('support.version')}"
+            force "com.android.support:support-core-utils:${project.property('support.version')}"
+            force "com.android.support:support-fragment:${project.property('support.version')}"
+
+            // dagger 2.16 and kapt
+            force "org.apache.httpcomponents:httpcore:4.2.5"
+            force "com.google.guava:guava:25.1-android"
+            force "org.checkerframework:checker-compat-qual:2.3.0"
+
+            // support library -> AAC
+            force "android.arch.lifecycle:viewmodel:${project.property('architecture.version')}"
+            force "android.arch.lifecycle:common:${project.property('architecture.version')}"
+            force "android.arch.lifecycle:runtime:${project.property('architecture.version')}"
+            force "android.arch.core:common:${project.property('architecture.version')}"
+            force "android.arch.lifecycle:livedata-core:${project.property('architecture.version')}"
+
+            force "org.jetbrains.kotlin:kotlin-stdlib:${project.property('kotlin.version')}"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

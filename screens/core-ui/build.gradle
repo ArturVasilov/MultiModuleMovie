@@ -1,0 +1,14 @@
+apply from: "${rootProject.projectDir}/common.gradle"
+
+android {
+    defaultConfig {
+        buildConfigField "String", "IMAGES_BASE_URL", '"http://image.tmdb.org/t/p/"'
+    }
+}
+
+dependencies {
+    implementation "com.android.support:appcompat-v7:${project.property('support.version')}"
+    implementation "android.arch.lifecycle:extensions:${project.property('architecture.version')}"
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+}

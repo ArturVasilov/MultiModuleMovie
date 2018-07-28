@@ -1,0 +1,19 @@
+apply from: "${rootProject.projectDir}/common.gradle"
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation project(":core")
+    implementation project(":core-ui")
+    implementation project(":movie-api")
+    implementation project(":network")
+
+    implementation "com.android.support:appcompat-v7:${project.property('support.version')}"
+    implementation "com.android.support:recyclerview-v7:${project.property('support.version')}"
+
+    implementation "com.google.dagger:dagger:${project.property('dagger.version')}"
+    kapt "com.google.dagger:dagger-compiler:${project.property('dagger.version')}"
+
+    implementation "io.reactivex.rxjava2:rxandroid:${project.property('rxandroid.version')}"
+
+    implementation "android.arch.lifecycle:extensions:${project.property('architecture.version')}"
+}

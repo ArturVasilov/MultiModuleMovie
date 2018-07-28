@@ -1,0 +1,18 @@
+apply from: "${rootProject.projectDir}/common.gradle"
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation project(":core")
+    implementation project(":network")
+
+    implementation "com.google.dagger:dagger:${project.property('dagger.version')}"
+    kapt "com.google.dagger:dagger-compiler:${project.property('dagger.version')}"
+
+    implementation "com.squareup.retrofit2:retrofit:${project.property('retrofit.version')}"
+    implementation "io.reactivex.rxjava2:rxjava:${project.property('rxjava.version')}"
+    implementation "com.google.code.gson:gson:${project.property('gson.version')}"
+
+    api "android.arch.persistence.room:runtime:${project.property('architecture.version')}"
+    api "android.arch.persistence.room:rxjava2:${project.property('architecture.version')}"
+    kapt "android.arch.persistence.room:compiler:${project.property('architecture.version')}"
+}

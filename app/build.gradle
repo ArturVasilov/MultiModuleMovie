@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId "ru.arturvasilov.multimodulemovie"
+
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        versionName rootProject.ext.versionName
+        versionCode rootProject.ext.versionCode
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs += 'src/main/kotlin'
+        }
+    }
+}
+
+dependencies {
+    implementation project(":network")
+    implementation project(":movie-api")
+    implementation project(":movie-list")
+    implementation project(":movie-details")
+    implementation project(":youtube")
+    implementation project(":core-ui")
+    implementation project(":core")
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${project.property('kotlin.version')}"
+
+    implementation "com.google.dagger:dagger:${project.property('dagger.version')}"
+    kapt "com.google.dagger:dagger-compiler:${project.property('dagger.version')}"
+
+    implementation "com.android.support:appcompat-v7:${project.property('support.version')}"
+    implementation "com.android.support:design:${project.property('support.version')}"
+}

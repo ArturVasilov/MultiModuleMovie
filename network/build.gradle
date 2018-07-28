@@ -1,0 +1,24 @@
+apply from: "${rootProject.projectDir}/common.gradle"
+apply plugin: 'kotlin-kapt'
+
+android {
+    defaultConfig {
+        buildConfigField "String", "API_ENDPOINT", '"http://api.themoviedb.org/3/"'
+        buildConfigField "String", "API_KEY", "\"${project.property('movieDb.apiKey')}\""
+    }
+}
+
+dependencies {
+    implementation project(":core")
+
+    implementation "com.google.dagger:dagger:${project.property('dagger.version')}"
+    kapt "com.google.dagger:dagger-compiler:${project.property('dagger.version')}"
+
+    implementation "io.reactivex.rxjava2:rxjava:${project.property('rxjava.version')}"
+
+    implementation "com.squareup.okhttp3:okhttp:${project.property('okhttp.version')}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${project.property('okhttp.version')}"
+    implementation "com.squareup.retrofit2:retrofit:${project.property('retrofit.version')}"
+    implementation "com.squareup.retrofit2:converter-gson:${project.property('retrofit.version')}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${project.property('retrofit.version')}"
+}

@@ -1,0 +1,16 @@
+include ':app'
+include ':core'
+include ':network'
+include ':movie-api'
+
+include ':core-ui'
+project(':core-ui').projectDir = new File(rootDir, 'screens/core-ui')
+
+include ':movie-list'
+project(':movie-list').projectDir = new File(rootDir, 'screens/movie-list')
+
+include ':movie-details'
+project(':movie-details').projectDir = new File(rootDir, 'screens/movie-details')
+
+include ':youtube'
+project(':youtube').projectDir = new File(rootDir, 'screens/youtube')

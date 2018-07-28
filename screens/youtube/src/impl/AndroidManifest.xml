@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="ru.arturvasilov.multimodulemovie.youtube">
+
+    <application>
+        <activity
+            android:name=".YoutubeVideoActivity"
+            android:configChanges="orientation|screenSize|density|fontScale|locale|mcc|mnc"
+            android:theme="@style/YouTubeTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+    </application>
+
+</manifest>
